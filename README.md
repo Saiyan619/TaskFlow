@@ -1,6 +1,7 @@
 # Task Manager
 
 A full-stack task manager with an Express/Drizzle/PostgreSQL backend and a React/Vite frontend.
+Live Preview - https://task-flow-gold-seven.vercel.app/
 
 ## Requirements
 
