@@ -165,7 +165,7 @@ export const useGetTask = (id: string) => {
 
 export const useUpdateTask = () => {
   const updateTask = async ({ id, taskData }: { id: string; taskData: updateTaskReq }): Promise<taskResponse> => {
-    const response = await fetch(`${TASK_API_BASE_URL}/${encodeURIComponent(id)}`, {
+    const response = await fetch(`${TASK_API_BASE_URL}/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -195,7 +195,7 @@ export const useUpdateTask = () => {
 
 export const useDeleteTask = () => {
   const deleteTask = async (id: string): Promise<void> => {
-    const response = await fetch(`${TASK_API_BASE_URL}/${encodeURIComponent(id)}`, {
+    const response = await fetch(`${TASK_API_BASE_URL}/${id}`, {
       method: "DELETE",
     });
 
