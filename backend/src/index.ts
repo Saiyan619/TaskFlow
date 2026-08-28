@@ -4,9 +4,14 @@ import taskRoutes from "./routes/index.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
-const frontendOrigin = process.env.FRONTEND_URL;
 
-app.use(cors({origin: frontendOrigin}));
+app.use(cors({
+  origin: [
+    "http://localhost:5173", // For local development
+    "https://task-flow-gold-seven.vercel.app" 
+  ],
+  credentials: true 
+}));
 app.use(express.json());
 app.use("/api/task", taskRoutes);
 app.listen(port, ()=>{
