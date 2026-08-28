@@ -4,7 +4,7 @@ import taskRoutes from "./routes/index.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
-const frontendOrigin = process.env.FRONTEND_URL || "http://localhost:5173";
+const frontendOrigin = process.env.FRONTEND_URL;
 
 app.use(cors({origin: frontendOrigin}));
 app.use(express.json());
