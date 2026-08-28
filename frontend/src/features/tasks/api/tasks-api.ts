@@ -3,9 +3,10 @@ import { type Task, type TaskDashboardSummary } from "../types/task"
 import { toast } from "@/components/ui/toast"
 
 export type ApiTaskPriority = "HIGH" | "MEDIUM" | "LOW"
+export const TASK_API_BASE_URL = "https://taskflow-backend-u5ja.onrender.com/api/task"
 
 export async function getTaskDashboard() {
-  const response = await fetch("http://localhost:3000/api/task")
+  const response = await fetch(TASK_API_BASE_URL)
   if (!response.ok) throw new Error("Failed to fetch dashboard tasks")
 
   const apiTasks = await response.json() as taskResponse[]
@@ -95,7 +96,7 @@ export interface taskResponse {
 
 export const useCreateTask = () => {
   const createTask = async(taskData: createTaskReq): Promise<createTaskResponse> => {
-    const response = await fetch("http://localhost:3000/api/task", {
+    const response = await fetch(TASK_API_BASE_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -127,7 +128,7 @@ export const useCreateTask = () => {
 
 export const useGetTasks = () => {
   const getTasks = async (): Promise<taskResponse[]> => {
-    const response = await fetch("http://localhost:3000/api/task");
+    const response = await fetch(TASK_API_BASE_URL);
 
     if (!response.ok) {
       throw new Error("Failed to fetch tasks");
@@ -146,7 +147,7 @@ export const useGetTasks = () => {
 
 export const useGetTask = (id: string) => {
   const getTask = async (): Promise<taskResponse> => {
-    const response = await fetch(`http://localhost:3000/api/task/${id}`);
+    const response = await fetch(`${TASK_API_BASE_URL}/${encodeURIComponent(id)}`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch task");
@@ -164,7 +165,7 @@ export const useGetTask = (id: string) => {
 
 export const useUpdateTask = () => {
   const updateTask = async ({ id, taskData }: { id: string; taskData: updateTaskReq }): Promise<taskResponse> => {
-    const response = await fetch(`http://localhost:3000/api/task/${id}`, {
+    const response = await fetch(`${TASK_API_BASE_URL}/${encodeURIComponent(id)}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -194,7 +195,7 @@ export const useUpdateTask = () => {
 
 export const useDeleteTask = () => {
   const deleteTask = async (id: string): Promise<void> => {
-    const response = await fetch(`http://localhost:3000/api/task/${id}`, {
+    const response = await fetch(`${TASK_API_BASE_URL}/${encodeURIComponent(id)}`, {
       method: "DELETE",
     });
 
